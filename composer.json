@@ -1,0 +1,40 @@
+{
+  "name": "stcom77/poloniex",
+  "description": "Laravel package for poloniex api",
+  "keywords": [
+    "php",
+    "api",
+    "rest-client",
+    "laravel",
+    "poloniex"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Stanislav Kuznetsov",
+      "email": "info@itstas.ru"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "laravel/framework": ">=5.3",
+    "guzzlehttp/guzzle": "~6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "stcom77\\Poloniex\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "stcom77\\Poloniex\\PoloniexServiceProvider"
+      ],
+      "aliases": {
+        "Poloniex": "stcom77\\Poloniex\\Poloniex"
+      }
+    }
+  }
+}
