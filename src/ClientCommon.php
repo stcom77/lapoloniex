@@ -58,4 +58,9 @@ class ClientCommon
     {
         return json_decode($this->content, $assoc, 512, $jsonOptions);
     }
+
+    public function getResult()
+    {
+        return $this->content;
+    }
 }
