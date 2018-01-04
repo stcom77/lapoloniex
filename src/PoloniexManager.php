@@ -21,6 +21,11 @@ class PoloniexManager
         return $this->app['config']['poloniex'];
     }
 
+    public function setTradingRequestTimeout($timeout)
+    {
+        $this->tradingClient->setRequestTimeout($timeout);
+    }
+
     public function __call($method, $parameters)
     {
         if (method_exists($this->publicClient, $method)) {

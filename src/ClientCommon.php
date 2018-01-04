@@ -14,20 +14,20 @@ class ClientCommon
         $this->apiUrl = $apiUrl;
     }
 
-    public function getQuery($queryOptions, $clientOptions = [])
+    public function getQuery($queryOptions, $clientOptions = [], $timeout = 2)
     {
         $client   = new Client(array_merge([
             'base_uri' => $this->apiUrl,
             'timeout'  => 2.0,
         ], $clientOptions));
-        $response = $client->get("", [RequestOptions::QUERY => $queryOptions]);
+        $response = $client->get("", [RequestOptions::QUERY => $queryOptions, RequestOptions::TIMEOUT => $timeout]);
 
         $this->content = $response->getBody()->getContents();
 
         return $this;
     }
 
-    public function postQuery($queryOptions, $clientOptions = [])
+    public function postQuery($queryOptions, $clientOptions = [], $timeout = 2)
     {
         $mt                    = explode(' ', microtime());
         $queryOptions['nonce'] = $mt[1] . substr($mt[0], 2, 3);
@@ -40,9 +40,9 @@ class ClientCommon
         ];
         $client                = new Client(array_merge([
             'base_uri' => $this->apiUrl,
-            'timeout'  => 2.0,
+            'timeout'  => $timeout,
         ], $clientOptions));
-        $response              = $client->post("", [RequestOptions::BODY => $post_data, RequestOptions::QUERY => $post_data, RequestOptions::HEADERS => $headers]);
+        $response              = $client->post("", [RequestOptions::BODY => $post_data, RequestOptions::QUERY => $post_data, RequestOptions::HEADERS => $headers, RequestOptions::TIMEOUT => $timeout]);
 
         $this->content = $response->getBody()->getContents();
 

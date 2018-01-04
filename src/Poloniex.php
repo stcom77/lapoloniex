@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\Facade;
  */
 
 /**
+ * @method static setRequestTimeout(\int $timeout)
  * @method static returnTicker()
  * @method static return24Volume()
  * @method static returnOrderBook(\string $currencyPair, \int $depth)
- * @method static returnTradeHistoryPublic(\string $currencyPair, \int $start = null, \int $end = null)
- * @method static returnChartData(\string $currencyPair, \int $period, \int $start = null, \int $end = null)
+ * @method static returnTradeHistoryPublic(\string $currencyPair, \int $start = null, \int $end = null, \int $limit = 10000)
+ * @method static returnChartData(\string $currencyPair, \int $candlePeriodSeconds, \int $startUnixTimestamp = null, \int $endUnixTimestamp = null)
  * @method static returnCurrencies()
  * @method static returnLoanOrders(\string $currency)
  * @method static returnBalances()
@@ -22,11 +23,11 @@ use Illuminate\Support\Facades\Facade;
  * @method static generateNewAddress()
  * @method static returnOpenOrders()
  * @method static returnAllOpenOrders()
- * @method static returnTradeHistory()
+ * @method static returnTradeHistory(\string $currencyPair = "all", \int $start = null, \int $end = null, \int $limit = 10000)
  * @method static returnOrderTrades()
  * @method static buy(\string $currencyPair, \double $rate, \double $amount)
  * @method static sell(\string $currencyPair, \double $rate, \double $amount)
- * @method static cancelOrder()
+ * @method static cancelOrder(\string $orderNumber)
  * @method static moveOrder()
  * @method static withdraw()
  * @method static returnFeeInfo()
@@ -44,6 +45,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static returnActiveLoans()
  * @method static returnLendingHistory()
  * @method static toggleAutoRenew()
+ * @method static returnDepositsWithdrawals(\int $startTimestamp, \int $endTimestamp)
  */
 
 class Poloniex extends Facade

@@ -30,9 +30,9 @@ class ClientPublicAPI extends ClientCommon
         return $this->getQuery(['command' => 'returnTradeHistory', 'currencyPair' => $currencyPair, 'start' => $start, 'end' => $end]);
     }
 
-    public function returnChartData($currencyPair, $period, $start = null, $end = null)
+    public function returnChartData($currencyPair, $candlePeriodSeconds, $startUnixTimestamp = null, $endUnixTimestamp = null)
     {
-        return $this->getQuery(['command' => 'returnChartData', 'currencyPair' => $currencyPair, 'period' => $period, 'start' => $start, 'end' => $end]);
+        return $this->getQuery(['command' => 'returnChartData', 'currencyPair' => $currencyPair, 'period' => $candlePeriodSeconds, 'start' => $startUnixTimestamp, 'end' => $endUnixTimestamp]);
     }
 
     public function returnCurrencies()
