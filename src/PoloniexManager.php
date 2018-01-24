@@ -5,7 +5,9 @@ namespace stcom77\Poloniex;
 class PoloniexManager
 {
 
+    const DEFAULT_TIMEOUT_SECONDS = 10;
     protected $app;
+    protected $timeoutSeconds;
 
     public function __construct($app)
     {
@@ -14,11 +16,20 @@ class PoloniexManager
         $this->publicClient  = new ClientPublicAPI($config['urls']['public']);
         $this->tradingClient = new ClientTradingAPI($config['urls']['trading'], $config['auth']['key'], $config['auth']['sign']);
         $this->pushClient    = new ClientPushAPI();
+        $this->timeoutSeconds = self::DEFAULT_TIMEOUT_SECONDS;
+        $this->setRequestTimeout($this->timeoutSeconds);
     }
 
     protected function getConfig()
     {
         return $this->app['config']['poloniex'];
+    }
+
+    public function setRequestTimeout($timeout)
+    {
+        $this->timeout = $timeout;
+        $this->tradingClient->setRequestTimeout($timeout);
+        $this->publicClient->setRequestTimeout($timeout);
     }
 
     public function setTradingRequestTimeout($timeout)

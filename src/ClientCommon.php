@@ -18,7 +18,7 @@ class ClientCommon
     {
         $client   = new Client(array_merge([
             'base_uri' => $this->apiUrl,
-            'timeout'  => 2.0,
+            'timeout'  => $timeout,
         ], $clientOptions));
         $response = $client->get("", [RequestOptions::QUERY => $queryOptions, RequestOptions::TIMEOUT => $timeout]);
 

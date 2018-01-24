@@ -3,7 +3,7 @@
 class ClientTradingAPI extends ClientCommon
 {
 
-    const DEFAULT_TIMEOUT_SECONDS = 2;
+    const DEFAULT_TIMEOUT_SECONDS = 10;
     protected $key;
     protected $sign;
     protected $timeout;
@@ -13,7 +13,6 @@ class ClientTradingAPI extends ClientCommon
         parent::__construct($apiUrl);
         $this->key     = $key;
         $this->sign    = $sign;
-        $this->timeout = self::DEFAULT_TIMEOUT_SECONDS;
     }
 
     public function setRequestTimeout($timeout)
